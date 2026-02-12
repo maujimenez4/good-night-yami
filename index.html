@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Buenas noches</title>
+
+  <meta name="theme-color" content="#f4efea" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <div class="wrap">
+    <!-- Header boutique -->
+    <header class="topbar">
+      <div class="topbar__brand">
+        <span class="topbar__mark">MAU</span>
+        <span class="topbar__dot"></span>
+        <span class="topbar__mark">VANE</span>
+      </div>
+      <nav class="topbar__nav">
+        <span>Home</span>
+        <span>Notes</span>
+        <span>Archive</span>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero__kicker">FROM MAU, TONIGHT</div>
+      <h1 class="hero__title">Vane</h1>
+      <p class="hero__sub">Un mensaje al día. Editorial, suave, nuestro.</p>
+    </section>
+
+    <main class="card">
+      <!-- marco editorial -->
+      <div class="frame">
+        <div class="frame__inner">
+          <div class="cardTop">
+            <div class="pill" id="statusPill">Preparando tu mensaje…</div>
+            <div class="pill" id="datePill">—</div>
+          </div>
+
+          <div class="main">
+            <button class="btnPrimary" id="openBtn">Abrir mensaje</button>
+
+            <div class="grid2">
+              <button class="btnGhost" id="replayBtn">Volver a verlo</button>
+              <button class="btnGhost btnMiss" id="missBtn">Cuando me extrañes</button>
+            </div>
+
+            <section class="messageBox" id="messageBox">
+              <p class="msg" id="msgText"></p>
+              <div class="signature" id="signature">— Mau</div>
+
+              <div class="audioRow" id="audioRow">
+                <div class="audioHint" id="audioHint">Sube el volumen para escucharlo.</div>
+                <div class="audioLabel" id="audioLabel"></div>
+
+                <div class="audioControls">
+                  <button class="btnGhost" id="playBtn" type="button">Reproducir audio</button>
+                  <a class="btnGhost spotifyBtn" id="spotifyLink" href="#" target="_blank" rel="noopener">
+                  Abrir Spotify
+                  </a>
+                </div>
+              </div>
+          </div>
+          </section>
+
+
+          <div class="divider"></div>
+
+          <details class="history">
+            <summary>Historial</summary>
+            <ul id="historyList"></ul>
+          </details>
+
+          <footer class="footer">Hecho con todo mi amor.</footer>
+
+          <audio id="player" preload="none">
+            <source id="playerSource" src="" />
+          </audio>
+        </div>
+      </div>
+  </div>
+  </main>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+
+</html>

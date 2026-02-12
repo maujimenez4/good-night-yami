@@ -1,0 +1,571 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root{
+  --bg: #f6f1ec;
+  --paper: rgba(255,255,255,.86);
+  --stroke: rgba(30, 22, 24, .10);
+  --ink: #1e1618;
+  --muted: rgba(30,22,24,.62);
+
+  --nude: #d9b8b0;
+  --nude2:#e8d8d2;
+  --shadow: 0 22px 60px rgba(25, 12, 16, .14);
+
+  --radius: 22px;
+
+  /* upgrades (mismos tonos, más consistencia) */
+  --line: rgba(30,22,24,.12);
+  --lineSoft: rgba(30,22,24,.10);
+  --paper2: rgba(255,255,255,.72);
+  --accent: #6b4bff; /* morado de spotify */
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  min-height:100vh;
+  background:
+    radial-gradient(900px 600px at 10% 0%, rgba(217,184,176,.16), transparent 55%),
+    radial-gradient(800px 520px at 90% 15%, rgba(232,216,210,.20), transparent 60%),
+    linear-gradient(180deg, var(--bg), #ffffff);
+  color:var(--ink);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  -webkit-font-smoothing: antialiased;
+  overflow-x:hidden;
+}
+
+/* fondo opcional */
+body.hasBg::before{
+  content:"";
+  position:fixed; inset:0;
+  background:url("./assets/bg.jpg") no-repeat center/cover;
+  opacity:.22;
+  pointer-events:none;
+  filter: saturate(1.02) contrast(1.02);
+}
+
+.wrap{
+  width: min(420px, 92vw);
+  margin: 14px auto 34px;
+}
+
+/* topbar boutique */
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding: 10px 2px 6px;
+  color: rgba(30,22,24,.62);
+  font-size: 11px;
+  letter-spacing:.18em;
+  text-transform: uppercase;
+}
+.topbar__brand{ display:flex; align-items:center; gap:8px; }
+.topbar__dot{
+  width:4px; height:4px; border-radius:50%;
+  background: rgba(30,22,24,.35);
+}
+.topbar__nav{ display:flex; gap:14px; }
+.topbar__nav span{ opacity:.72; }
+
+/* hero editorial */
+.hero{
+  text-align:center;
+  padding: 10px 0 14px;
+}
+.hero__kicker{
+  letter-spacing:.28em;
+  font-size: 11px;
+  color: var(--muted);
+}
+.hero__title{
+  margin: 6px 0 4px;
+  font-family:"Playfair Display", ui-serif, Georgia, "Times New Roman", serif;
+  font-weight:700;
+  font-size: 40px;
+}
+.hero__sub{
+  margin:0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height:1.5;
+}
+
+.card{
+  background: var(--paper);
+  border:1px solid var(--stroke);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow:hidden;
+  backdrop-filter: blur(10px);
+}
+
+/* Marco editorial interior */
+.frame{
+  padding: 14px;
+}
+.frame__inner{
+  border-radius: 18px;
+  border: 1px solid rgba(30,22,24,.10);
+  background: rgba(255,255,255,.55);
+  overflow:hidden;
+}
+.cardTop{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  padding: 14px 14px;
+  border-bottom: 1px solid rgba(30,22,24,.08);
+  background: linear-gradient(135deg, rgba(217,184,176,.20), rgba(232,216,210,.14));
+}
+
+.pill{
+  font-size: 12px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border:1px solid rgba(30,22,24,.10);
+  background: rgba(255,255,255,.72);
+  color: rgba(30,22,24,.74);
+  white-space:nowrap;
+}
+
+.main{ padding: 16px; }
+
+/* =========================
+   BOTONES — unificados (clean)
+   ========================= */
+.btnPrimary,
+.btnGhost,
+.btnLine,
+.spotifyBtn{
+  -webkit-tap-highlight-color: transparent;
+  appearance:none;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.74);
+  color: rgba(30,22,24,.90);
+  font: 600 14px/1.05 Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  letter-spacing:.02em;
+  border-radius: 999px;
+  padding: 12px 14px;
+  height: 44px;                 /* <- misma altura */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease, background .12s ease;
+}
+
+.btnPrimary{
+  width: 100%;
+  background: rgba(255,255,255,.78);
+  border-color: rgba(30,22,24,.12);
+}
+.btnPrimary:active{ transform: scale(.985); }
+
+.grid2{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:10px;
+  margin-top:10px;
+}
+
+.btnGhost{
+  width: 100%;
+  padding: 11px 12px;
+  background: transparent;
+  color: rgba(30,22,24,.80);
+  font-weight: 600;
+}
+.btnGhost:active{ transform: scale(.985); }
+
+.btnLine{
+  padding: 10px 12px;
+  background: transparent;
+  font-weight: 600;
+}
+.btnLine:active{ transform: scale(.985); }
+
+.btnPrimary:hover,
+.btnGhost:hover,
+.btnLine:hover,
+.spotifyBtn:hover{
+  border-color: rgba(30,22,24,.18);
+  box-shadow: 0 10px 26px rgba(25, 12, 16, .10);
+}
+
+/* Botón más “editorial” e impactante (sin perder el clean) */
+.btnMiss{
+  border: 1px solid rgba(30,22,24,.14);
+  background: linear-gradient(135deg, rgba(30,22,24,.86), rgba(30,22,24,.72));
+  color: rgba(255,255,255,.92);
+  box-shadow: 0 12px 26px rgba(30,22,24,.18);
+  font-family: "Playfair Display", ui-serif, Georgia, "Times New Roman", serif;
+  letter-spacing: .02em;
+}
+.btnMiss:active{ transform: scale(.985); }
+
+/* =========================
+   MENSAJE BOX
+   ========================= */
+.messageBox{
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(30,22,24,.10);
+  background: rgba(255,255,255,.72);
+  display:none;
+}
+
+.msg{
+  margin:0;
+  font-family:"Playfair Display", ui-serif, Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  line-height:1.75;
+  color: rgba(30,22,24,.92);
+  white-space: pre-wrap;
+}
+.signature{
+  margin-top: 10px;
+  text-align:right;
+  font-size: 12px;
+  color: rgba(30,22,24,.70);
+  font-style: italic;
+}
+
+/* =========================
+   AUDIO — layout limpio (grid)
+   ========================= */
+.audioRow{
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(30,22,24,.10);
+  background: rgba(255,255,255,.60);
+  display: grid;
+  gap: 10px;
+}
+
+.audioHint{
+  font-size: 11px;
+  color: rgba(30,22,24,.60);
+  letter-spacing: .02em;
+}
+
+/* contenedor de botones */
+.audioControls{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+/* label abajo */
+.audioLabel{
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.25;
+}
+
+/* =========================
+   SPOTIFY button (elegante)
+   ========================= */
+.spotifyBtn{
+  display:none;          /* lo prende el JS solo en música */
+  text-align:center;
+  text-decoration:none;
+  color: var(--accent);
+  font-weight: 700;
+  background: rgba(255,255,255,.78);
+  border-color: rgba(30,22,24,.12);
+}
+
+.spotifyBtn::before{
+  content:"↗";
+  display:inline-grid;
+  place-items:center;
+  width:18px;
+  height:18px;
+  border-radius:8px;
+  border:1px solid rgba(30,22,24,.12);
+  color: var(--accent);
+  font-size:12px;
+}
+
+/* =========================
+   VARIOS
+   ========================= */
+.hint{
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.mono{ font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+.divider{
+  margin: 14px 0 0;
+  border-top: 1px solid rgba(30,22,24,.08);
+}
+
+.history{
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 16px;
+  border: 1px dashed rgba(30,22,24,.20);
+  background: rgba(255,255,255,.55);
+}
+summary{
+  cursor:pointer;
+  font-weight: 600;
+  color: rgba(30,22,24,.78);
+}
+ul{ margin: 10px 0 0 18px; padding:0; }
+li{ margin: 6px 0; color: rgba(30,22,24,.70); font-size: 12px; }
+
+.footer{
+  margin-top: 12px;
+  text-align:center;
+  color: rgba(30,22,24,.54);
+  font-size: 12px;
+}
+
+/* accesibilidad focus */
+.btnPrimary:focus-visible,
+.btnGhost:focus-visible,
+.btnLine:focus-visible,
+.spotifyBtn:focus-visible{
+  outline: 3px solid rgba(217,184,176,.35);
+  outline-offset: 2px;
+}
+
+/* =========================
+   MOBILE FIX — audio row
+   ========================= */
+
+/* El contenedor del audio que no se vea "apretado" */
+.audioRow{
+  padding: 12px;
+  border-radius: 16px;
+  display: grid;
+  gap: 10px;
+}
+
+/* Hint en una sola línea, limpio */
+.audioHint{
+  font-size: 11px;
+  color: rgba(30,22,24,.60);
+  line-height: 1.3;
+  margin: 0;
+}
+
+/* Dos botones en móvil: 2 columnas iguales */
+.audioControls{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+/* Botones full width dentro del grid */
+.audioControls .btnLine,
+.audioControls .spotifyBtn{
+  width: 100%;
+  height: 44px;
+  padding: 10px 12px;
+  font-size: 13px;
+  border-radius: 999px;
+}
+
+/* El botón de Spotify que no grite tanto ni ocupe raro */
+.spotifyBtn{
+  font-weight: 700;
+  justify-content: center;
+  white-space: normal;   /* permite salto de línea */
+  line-height: 1.1;
+  padding: 10px 10px;
+}
+
+/* El iconito no tan grande */
+.spotifyBtn::before{
+  width: 18px;
+  height: 18px;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+/* Label abajo alineado a la izquierda */
+.audioLabel{
+  font-size: 12px;
+  color: rgba(30,22,24,.62);
+  text-align: left;
+}
+
+/* Si el ancho es MUY chico, apila los botones (mejor que romperse) */
+@media (max-width: 360px){
+  .audioControls{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   CLEAN GIRL AUDIO (FIX CUT)
+   Pegar al FINAL del styles.css
+   ========================= */
+
+.audioRow{
+  margin-top: 12px;
+  display: grid;              /* <- clave: ya no flex */
+  gap: 10px;
+  padding: 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(30,22,24,.10);
+  background: rgba(255,255,255,.65);
+}
+
+.audioHint{
+  font-size: 11px;
+  color: rgba(30,22,24,.55);
+  line-height: 1.35;
+}
+
+.audioControls{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  align-items: stretch;
+}
+
+.audioControls .btnLine,
+.audioControls .spotifyBtn{
+  width: 100%;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  border-radius: 999px;
+  border: 1px solid rgba(30,22,24,.14);
+  background: rgba(255,255,255,.72);
+  color: rgba(30,22,24,.86);
+
+  font-weight: 600;
+  font-size: 13px;
+  text-decoration: none;
+
+  overflow: hidden;           /* <- evita cortes raros */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Botón Spotify más “clean”, sin morado */
+.spotifyBtn{
+  display: none; /* lo prende el JS */
+  background: rgba(30,22,24,.86);
+  color: rgba(255,255,255,.92);
+  border-color: rgba(30,22,24,.20);
+  box-shadow: 0 10px 20px rgba(30,22,24,.12);
+}
+
+.spotifyBtn::before{
+  content: "↗";
+  width: 20px;
+  height: 20px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,.14);
+  color: rgba(255,255,255,.92);
+  font-size: 12px;
+}
+
+/* Label abajo, limpio */
+.audioLabel{
+  font-size: 12px;
+  color: rgba(30,22,24,.60);
+  text-align: left;
+}
+
+/* Pantallas muy pequeñas: apila botones */
+@media (max-width: 360px){
+  .audioControls{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Audio row en 3 líneas (hint / label / botones) */
+.audioRow{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  padding: 12px;
+}
+
+/* El label arriba de los botones */
+.audioLabel{
+  order: 2;
+  text-align: left;
+  font-size: 12px;
+  color: rgba(30,22,24,.60);
+}
+
+/* Hint arriba */
+.audioHint{
+  order: 1;
+}
+
+/* Botones hasta abajo */
+.audioControls{
+  order: 3;
+  display: grid;
+  grid-template-columns: 1fr 1fr;  /* 2 botones */
+  gap: 10px;
+}
+
+/* En pantallas muy pequeñas: uno debajo del otro */
+@media (max-width: 360px){
+  .audioControls{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Audio: una sola columna, dos botones en vertical */
+.audioRow{
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  align-items: start;
+}
+
+.audioLabel{
+  text-align: left;
+  flex: unset;
+}
+
+/* Botones en columna */
+.audioControls{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+/* Spotify solo visible cuando el JS lo activa */
+.spotifyBtn{
+  display: none;
+  text-align: center;
+  text-decoration: none;
+}
+
+/* Para que <a> se vea exactamente como botón */
+.spotifyBtn.btnGhost{
+  display: none; /* se prende en JS */
+}
+
+/* Opcional: un poquito más “premium” al reproducir */
+#playBtn.btnGhost{
+  background: rgba(255,255,255,.64);
+}
